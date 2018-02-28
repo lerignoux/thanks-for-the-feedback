@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block content %}
+	<header>
+    <h1>{% trans "Sign Out" %}</h1>
+
+    <p>{% trans 'Are you sure you want to sign out?' %}</p>
+
+    <form method="post" action="{% url 'account_logout' %}">
+      {% csrf_token %}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+      {% endif %}
+      <button type="submit">{% trans 'Sign Out' %}</button>
+    </form>
+	</header>
+	<!--
+	<hr />
+	<h2>Extra Stuff!</h2>
+	<form method="post" action="#">
+		<div class="field">
+			<input type="text" name="name" id="name" placeholder="Name" />
+		</div>
+		<div class="field">
+			<input type="email" name="email" id="email" placeholder="Email" />
+		</div>
+		<div class="field">
+			<div class="select-wrapper">
+				<select name="department" id="department">
+					<option value="">Department</option>
+					<option value="sales">Sales</option>
+					<option value="tech">Tech Support</option>
+					<option value="null">/dev/null</option>
+				</select>
+			</div>
+		</div>
+		<div class="field">
+			<textarea name="message" id="message" placeholder="Message" rows="4"></textarea>
+		</div>
+		<div class="field">
+			<input type="checkbox" id="human" name="human" /><label for="human">I'm a human</label>
+		</div>
+		<div class="field">
+			<label>But are you a robot?</label>
+			<input type="radio" id="robot_yes" name="robot" /><label for="robot_yes">Yes</label>
+			<input type="radio" id="robot_no" name="robot" /><label for="robot_no">No</label>
+		</div>
+		<ul class="actions">
+			<li><a href="#" class="button">Get Started</a></li>
+		</ul>
+	</form>
+	<hr />
+	-->
+{% endblock %}

@@ -53,7 +53,7 @@
 	<footer>
 		<ul class="icons">
 			{% if user.is_authenticated %}
-			<li><a href="{% url 'account_logout' %}" class="fa-logout">Logout</a></li>
+			<li><a href="{% url 'account_logout' %}" class="fa-lock">Logout</a></li>
 			{% else %}
 			<li><a href="{% provider_login_url 'github' %}" class="fa-github">Sign Up with github</a></li>
 			<li><a href="{% provider_login_url 'google' %}" class="fa-google">Sign Up with google</a></li>
