@@ -14,47 +14,23 @@
 		<a href="{% provider_login_url 'google' %}">google</a>
 		{% endif %}
 	</header>
-	<!--
+
 	<hr />
-	<h2>Extra Stuff!</h2>
-	<form method="post" action="#">
-		<div class="field">
-			<input type="text" name="name" id="name" placeholder="Name" />
-		</div>
-		<div class="field">
-			<input type="email" name="email" id="email" placeholder="Email" />
-		</div>
-		<div class="field">
-			<div class="select-wrapper">
-				<select name="department" id="department">
-					<option value="">Department</option>
-					<option value="sales">Sales</option>
-					<option value="tech">Tech Support</option>
-					<option value="null">/dev/null</option>
-				</select>
-			</div>
-		</div>
-		<div class="field">
-			<textarea name="message" id="message" placeholder="Message" rows="4"></textarea>
-		</div>
-		<div class="field">
-			<input type="checkbox" id="human" name="human" /><label for="human">I'm a human</label>
-		</div>
-		<div class="field">
-			<label>But are you a robot?</label>
-			<input type="radio" id="robot_yes" name="robot" /><label for="robot_yes">Yes</label>
-			<input type="radio" id="robot_no" name="robot" /><label for="robot_no">No</label>
-		</div>
-		<ul class="actions">
-			<li><a href="#" class="button">Get Started</a></li>
-		</ul>
-	</form>
+	<h2 class="icon fa-link"><span class="label">Your feedback link</span>Your feedback link</h2>
+	<span>https://tftf.eu/feedback/5455424-sqd5qsd4sq5d4qs3-q5s6d4qs5d</span><a href=""><span class="icon fa-paste"></span></a>
+
 	<hr />
-	-->
+
+
+	<p>Asshole</p>
+	<p>You are nice</p>
+	<p>I hate you</p>
+	<hr />
+
 	<footer>
 		<ul class="icons">
 			{% if user.is_authenticated %}
-			<li><a href="{% url 'account_logout' %}" class="fa-lock">Logout</a></li>
+			<li><a href="{% url 'account_logout' %}" class="fa-sign-out">Logout</a></li>
 			{% else %}
 			<li><a href="{% provider_login_url 'github' %}" class="fa-github">Sign Up with github</a></li>
 			<li><a href="{% provider_login_url 'google' %}" class="fa-google">Sign Up with google</a></li>
