@@ -17,6 +17,7 @@
 		@include padding(4.5em, 3em);
 
 		background: _palette(bg);
+    background: rgba(_palette(bg), 0.7);
 		border-radius: _size(border-radius);
 		cursor: default;
 		opacity: 0.95;
@@ -39,7 +40,6 @@
 				margin: 0 auto;
 				max-width: 150px;
 				border-radius: 100%;
-				box-shadow: 0 0 0 1.5em _palette(bg);
 			}
 
 			&:before {
