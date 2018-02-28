@@ -15,17 +15,20 @@
 		{% endif %}
 	</header>
 
+	{% if user.is_authenticated %}
 	<hr />
 	<h2 class="icon fa-link"><span class="label">Your feedback link</span>Your feedback link</h2>
 	<span>https://tftf.eu/feedback/5455424-sqd5qsd4sq5d4qs3-q5s6d4qs5d</span><a href=""><span class="icon fa-paste"></span></a>
 
 	<hr />
 
-
 	<p>Asshole</p>
 	<p>You are nice</p>
 	<p>I hate you</p>
 	<hr />
+
+	{% endif %}
+
 
 	<footer>
 		<ul class="icons">
