@@ -1,0 +1,12 @@
+{% extends 'account_frame.html' %}
+
+{% block content %}
+{% for feedback in feedbacks %}
+
+<p>{{feedback.feedback}}</p>
+
+<hr />
+
+{% endfor %}
+
+{% endblock %}

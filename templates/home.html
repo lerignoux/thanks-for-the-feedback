@@ -1,45 +1,30 @@
-{% extends 'base.html' %}
+{% extends 'account_frame.html' %}
 
 {% block content %}
-{% load static %}
-{% load socialaccount %}
-{% load account %}
-	<header>
-		{% if user.is_authenticated %}
-		<span class="avatar"><img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="user_icon" /></span>
-		<h1>{% user_display user %}</h1>
-		{% else %}
-		<span class="avatar"><img src="{% static "logo.png" %}" alt="user_icon" /></span>
-		<h1>Thanks for the feedback</h1>
-		<p>Choose your login method</p>
-		<a href="{% provider_login_url 'github' %}">github</a>
-		<a href="{% provider_login_url 'google' %}">google</a>
-		{% endif %}
-	</header>
 
-	{% if user.is_authenticated %}
 	<hr />
+
+  {% if not campaign %}
+  <p>You don't have any active campaign</p>
+  <form method="POST" class="campaign-form">
+    {% csrf_token %}
+    <button type="submit">Create a campaign</button>
+  </form>
+  {% else %}
 	<h2 class="icon fa-link"><span class="label">Your feedback link</span>Your feedback link</h2>
-	<span>https://tftf.eu/feedback/5455424-sqd5qsd4sq5d4qs3-q5s6d4qs5d</span><a href=""><span class="icon fa-paste"></span></a>
+	<span>https://tftf.eu/feedback/{{ campaign.id }}</span><a href=""><span class="icon fa-paste"></span></a>
 
 	<hr />
 
-	<p>Asshole</p>
-	<p>You are nice</p>
-	<p>I hate you</p>
-	<hr />
+  <h2 class="icon fa-link"><span class="label">Update your form message</span>Update your form message</h2>
+  <form method="POST" class="campaign-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update your message</button>
+  </form>
 
-	{% endif %}
+  {% endif %}
 
+  	<hr />
 
-	<footer>
-		<ul class="icons">
-			{% if user.is_authenticated %}
-			<li><a href="{% url 'account_logout' %}" class="fa-sign-out">Logout</a></li>
-			{% else %}
-			<li><a href="{% provider_login_url 'github' %}" class="fa-github">Sign Up with github</a></li>
-			<li><a href="{% provider_login_url 'google' %}" class="fa-google">Sign Up with google</a></li>
-			{% endif %}
-		</ul>
-	</footer>
 {% endblock %}
