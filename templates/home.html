@@ -11,7 +11,7 @@
 		<button>Feedbacks</button>
 	</a>
 	{% endif %}
-	<a href="{% url 'feedbacks' %}">
+	<a href="{% url 'contribute' %}">
 		<button>Contribute</button>
 	</a>
 
@@ -26,7 +26,7 @@
   {% else %}
 	<h2 class="icon fa-paste"><span class="label">Your feedback link</span>Your feedback link</h2>
 	<pre style="padding-left: 6px; padding-right: 4px;">https://tftf.eu/feedback/{{ campaign.id }}</pre>
-	<a style="cursor: url(static/download2.png), auto;" href="{% url 'campaign_qr' %}">{% autoescape off %}{{ qr_code }}{% endautoescape %}</a>
+	<a style="cursor: url(static/download.png), auto;" href="{% url 'campaign_qr' %}">{% autoescape off %}{{ qr_code }}{% endautoescape %}</a>
 
 	<hr />
 

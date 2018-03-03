@@ -51,6 +51,10 @@ def feedbacks(request):
         return redirect('home')
 
 
+def contribute(request):
+    return render(request, 'contribute.html')
+
+
 def feedback(request, campaign_id):
     if request.method == "POST":
         form = FeedbackForm(request.POST)

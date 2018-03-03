@@ -1,0 +1,25 @@
+{% extends 'account_frame.html' %}
+
+{% block content %}
+
+	<a href="{% url 'home' %}">
+		<button href="{% url 'home' %}">Settings</button>
+	</a>
+
+	<a href="{% url 'feedbacks' %}">
+		<button>Feedbacks</button>
+	</a>
+
+	<a href="{% url 'contribute' %}">
+		<button class="active">contribute</button>
+	</a>
+	<hr />
+
+
+  <h1>Contribute</h1>
+	<p> If you liked the project and want to contribute, thank you a lot.<br/>
+	it will help to pay the server and development cost.</p>
+
+  <hr />
+
+{% endblock %}
