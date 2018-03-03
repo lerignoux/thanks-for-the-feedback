@@ -25,8 +25,8 @@
   </form>
   {% else %}
 	<h2 class="icon fa-paste"><span class="label">Your feedback link</span>Your feedback link</h2>
-	<pre>https://tftf.eu/feedback/{{ campaign.id }}</pre>
-	<a href="{% url 'campaign_qr' %}">{% autoescape off %}{{ qr_code }}{% endautoescape %}</a>
+	<pre style="padding-left: 6px; padding-right: 4px;">https://tftf.eu/feedback/{{ campaign.id }}</pre>
+	<a style="cursor: url(static/download2.png), auto;" href="{% url 'campaign_qr' %}">{% autoescape off %}{{ qr_code }}{% endautoescape %}</a>
 
 	<hr />
 
