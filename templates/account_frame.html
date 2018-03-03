@@ -29,6 +29,7 @@
 			<li><a href="{% url 'account_logout' %}" class="fa-sign-out">Logout</a></li>
 			{% else %}
 			<li><a href="{% provider_login_url 'github' %}" class="fa-github">Sign Up with github</a></li>
+			<li><a href="{% provider_login_url 'linkedin' %}" class="fa-linkedin">Sign Up with linkedin</a></li>
 			<li><a href="{% provider_login_url 'google' %}" class="fa-google">Sign Up with google</a></li>
 			{% endif %}
 		</ul>
