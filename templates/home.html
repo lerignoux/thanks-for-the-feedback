@@ -11,6 +11,9 @@
 		<button>Feedbacks</button>
 	</a>
 	{% endif %}
+	<a href="{% url 'feedbacks' %}">
+		<button>Contribute</button>
+	</a>
 
 	<hr />
 
@@ -23,11 +26,13 @@
   {% else %}
 	<h2 class="icon fa-paste"><span class="label">Your feedback link</span>Your feedback link</h2>
 	<pre>https://tftf.eu/feedback/{{ campaign.id }}</pre>
-	{% autoescape off %}{{ qr_code }}{% endautoescape %}
+	<a href="{% url 'campaign_qr' %}">{% autoescape off %}{{ qr_code }}{% endautoescape %}</a>
+
 	<hr />
 
-	<h2 class="icon fa-calendar-times-o"><span class="label">Valid until</span>Valid until {{expiration_date}}</h2>
-  <h2 class="icon fa-comment"><span class="label">Feedback message</span>Feedback message</h2>
+	<h2 class="icon fa-cog"><span class="label">Settings</span>Settings</h2>
+	<p class="icon fa-calendar-times-o"><span class="label">Valid until</span>Valid until {{expiration_date}}</p>
+  <p class="icon fa-comment"><span class="label">Feedback message</span>Feedback message</p>
   <form method="POST" class="campaign-form">
     {% csrf_token %}
     <textarea name="message" id="message" rows=5 required>{{campaign.message}}</textarea>

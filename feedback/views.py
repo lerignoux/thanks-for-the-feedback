@@ -1,6 +1,8 @@
 import logging
+import os
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.http import HttpResponse
 
 from .forms import FeedbackForm, CampaignForm
 from .models import Campaign, Feedback
@@ -21,14 +23,22 @@ def home(request):
                 campaign.message = request.POST['message']
                 campaign.save()
         if campaign:
-            qrcode = campaign.qr_code(request.get_host()).decode("utf-8")
-            qrcode = qrcode.replace("#000000", "#008899")
+            qrcode = campaign.qr_code(request.get_host())
             form = CampaignForm(instance=campaign)
             return render(request, 'home.html', {'form': form, 'campaign': campaign, 'qr_code': qrcode, 'expiration_date': campaign.expiration_date})
         else:
             return render(request, 'home.html', {})
     else:
         return render(request, 'home.html', {})
+
+
+def campaign_qr(request):
+    user = request.user
+    if user.is_authenticated:
+        campaign = Campaign.objects.filter(user=user, expiration_date__gte=timezone.now()).order_by('-creation_date').first()
+        response = HttpResponse(campaign.qr_code(request.get_host(), png=True), content_type="application/png")
+        response['Content-Disposition'] = 'inline; filename=tftf_qr.png'
+        return response
 
 
 def feedbacks(request):

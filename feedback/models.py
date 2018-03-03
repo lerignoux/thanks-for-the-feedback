@@ -25,22 +25,30 @@ class Campaign(models.Model):
     def __str__(self):
         return "Feedback campaign started the %s valid until %s" % (self.creation_date, self.expiration_date)
 
-    def qr_code(self, host):
+    def qr_code(self, host, png=False):
         url = "{host}/feedback/{campaign_id}".format(
             host=host, campaign_id=self.id
         )
 
-        qr = qrcode.QRCode(image_factory=svg.SvgPathImage)
+        qr = qrcode.QRCode()
         qr.add_data(url)
         qr.make(fit=True)
 
-        img = qr.make_image(image_factory=svg.SvgPathImage)
+        img = qr.make_image(fill_color="#ffffff", back_color="#008899") if png else qr.make_image(image_factory=svg.SvgPathImage)
         log.info("campaign QR generated %s " % img)
 
         output = io.BytesIO()
         img.save(output)
-        output.seek(39)  # we ignore the svg header
-        return output.read()
+        if png:
+            output.seek(0)
+        else:
+            output.seek(39)  # we ignore the svg header
+
+        qr_str = output.read()
+        if not png:
+            qr_str = qr_str.decode("utf-8").replace("#000000", "#008899")
+
+        return qr_str
 
 
 class Feedback(models.Model):
