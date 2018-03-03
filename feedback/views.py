@@ -21,19 +21,21 @@ def home(request):
                 campaign.message = request.POST['message']
                 campaign.save()
         if campaign:
+            qrcode = campaign.qr_code(request.get_host()).decode("utf-8")
+            qrcode = qrcode.replace("#000000", "#008899")
             form = CampaignForm(instance=campaign)
-            return render(request, 'home.html', {'form': form, 'campaign': campaign})
+            return render(request, 'home.html', {'form': form, 'campaign': campaign, 'qr_code': qrcode, 'expiration_date': campaign.expiration_date})
         else:
             return render(request, 'home.html', {})
     else:
-        return redirect('home')
+        return render(request, 'home.html', {})
 
 
 def feedbacks(request):
     user = request.user
     if user.is_authenticated:
-        campaign = Campaign.objects.filter(user=user, expiration_date__gte=timezone.now()).order_by('-creation_date').first()
-        feedbacks = Feedback.objects.filter(campaign=campaign).order_by('-creation_date')
+        campaigns = Campaign.objects.filter(user=user, expiration_date__gte=timezone.now()).order_by('-creation_date')
+        feedbacks = Feedback.objects.filter(campaign__in=campaigns).order_by('-creation_date')
         return render(request, 'feedbacks.html', {'feedbacks': feedbacks})
     else:
         return redirect('home')

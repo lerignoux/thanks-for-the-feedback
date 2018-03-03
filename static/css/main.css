@@ -528,6 +528,18 @@ button,
     -ms-pointer-events: none;
     pointer-events: none;
     opacity: 0.5; }
+  input[type="submit"].active,
+  input[type="reset"].active,
+  input[type="button"].active,
+  button.active,
+  .button.active {
+    border-color: #ff7496;
+    color: #ff7496 !important; }
+
+pre {
+  background-color: #333;
+  cursor: text;
+  font-size: 0.8em; }
 
 /* Main */
 #main {

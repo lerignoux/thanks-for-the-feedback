@@ -1,7 +1,14 @@
+import io
+import logging
 import uuid
 from datetime import timedelta
 from django.db import models
 from django.utils import timezone
+
+import qrcode
+from qrcode.image import svg
+
+log = logging.getLogger(__name__)
 
 
 def default_expiration_date():
@@ -17,6 +24,23 @@ class Campaign(models.Model):
 
     def __str__(self):
         return "Feedback campaign started the %s valid until %s" % (self.creation_date, self.expiration_date)
+
+    def qr_code(self, host):
+        url = "{host}/feedback/{campaign_id}".format(
+            host=host, campaign_id=self.id
+        )
+
+        qr = qrcode.QRCode(image_factory=svg.SvgPathImage)
+        qr.add_data(url)
+        qr.make(fit=True)
+
+        img = qr.make_image(image_factory=svg.SvgPathImage)
+        log.info("campaign QR generated %s " % img)
+
+        output = io.BytesIO()
+        img.save(output)
+        output.seek(39)  # we ignore the svg header
+        return output.read()
 
 
 class Feedback(models.Model):

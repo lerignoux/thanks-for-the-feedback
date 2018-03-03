@@ -2,9 +2,9 @@
 
 {% block frame %}
 
-<h1>{{message}}</h1>
+<p>{{message}}</p>
 <form method="POST" class="post-form">{% csrf_token %}
-    {{ form.as_p }}
+    <textarea name="feedback" id="feedback" rows=6 cols=80 required></textarea>
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
 

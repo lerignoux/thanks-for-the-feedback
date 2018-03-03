@@ -1,2 +1,4 @@
 django>=2.0
 django-allauth>=0.34
+Pillow>=5.0
+qrcode>=5.3

@@ -3,9 +3,18 @@
 {% block content %}
 {% for feedback in feedbacks %}
 
-<p>{{feedback.feedback}}</p>
+	<a href="{% url 'home' %}">
+		<button href="{% url 'home' %}">Settings</button>
+	</a>
 
-<hr />
+	<button class="active">Feedbacks</button>
+
+	<hr />
+
+
+  <p>{{feedback.feedback}}</p>
+
+  <hr />
 
 {% endfor %}
 

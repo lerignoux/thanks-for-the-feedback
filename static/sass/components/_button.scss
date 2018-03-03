@@ -66,4 +66,9 @@
 			@include vendor('pointer-events', 'none');
 			opacity: 0.5;
 		}
+
+		&.active {
+			border-color: _palette(highlight);
+			color: _palette(highlight) !important;
+		}
 	}

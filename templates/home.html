@@ -2,6 +2,16 @@
 
 {% block content %}
 
+	<button href="{% url 'home' %}" class='active' type="submit">Settings</button>
+
+	{% if not campaign %}
+	<button class="disabled">Feedbacks</button>
+	{% else %}
+	<a href="{% url 'feedbacks' %}">
+		<button>Feedbacks</button>
+	</a>
+	{% endif %}
+
 	<hr />
 
   {% if not campaign %}
@@ -11,16 +21,17 @@
     <button type="submit">Create a campaign</button>
   </form>
   {% else %}
-	<h2 class="icon fa-link"><span class="label">Your feedback link</span>Your feedback link</h2>
-	<span>https://tftf.eu/feedback/{{ campaign.id }}</span><a href=""><span class="icon fa-paste"></span></a>
-
+	<h2 class="icon fa-paste"><span class="label">Your feedback link</span>Your feedback link</h2>
+	<pre>https://tftf.eu/feedback/{{ campaign.id }}</pre>
+	{% autoescape off %}{{ qr_code }}{% endautoescape %}
 	<hr />
 
-  <h2 class="icon fa-link"><span class="label">Update your form message</span>Update your form message</h2>
+	<h2 class="icon fa-calendar-times-o"><span class="label">Valid until</span>Valid until {{expiration_date}}</h2>
+  <h2 class="icon fa-comment"><span class="label">Feedback message</span>Feedback message</h2>
   <form method="POST" class="campaign-form">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update your message</button>
+    <textarea name="message" id="message" rows=5 required>{{campaign.message}}</textarea>
+    <button type="submit">Update</button>
   </form>
 
   {% endif %}
