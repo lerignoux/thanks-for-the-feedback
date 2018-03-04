@@ -2,21 +2,9 @@
 
 {% block content %}
 
-	<button href="{% url 'home' %}" class='active' type="submit">Settings</button>
-
-	{% if not campaign %}
-	<button class="disabled">Feedbacks</button>
-	{% else %}
-	<a href="{% url 'feedbacks' %}">
-		<button>Feedbacks</button>
-	</a>
-	{% endif %}
-	<a href="{% url 'contribute' %}">
-		<button>Contribute</button>
-	</a>
-	<a href="{% url 'account_logout' %}"><span style=" vertical-align: middle;" class="logout icon fa-power-off"></span></a>
-
-	<hr />
+	{% block menu %}
+		{% include "menu.html" with current="home" %}
+	{% endblock %}
 
   {% if not campaign %}
   <p>You don't have any active campaign</p>

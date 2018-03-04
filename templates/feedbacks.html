@@ -1,24 +1,28 @@
 {% extends 'account_frame.html' %}
 
 {% block content %}
-{% for feedback in feedbacks %}
+	{% block menu %}
+		{% include "menu.html" with current="feedbacks" %}
+	{% endblock %}
 
-	<a href="{% url 'home' %}">
-		<button href="{% url 'home' %}">Settings</button>
-	</a>
+	{% for feedback in feedbacks %}
 
-	<button class="active">Feedbacks</button>
+		<a href="{% url 'home' %}">
+			<button href="{% url 'home' %}">Settings</button>
+		</a>
 
-	<a href="{% url 'contribute' %}">
-		<button>contribute</button>
-	</a>
-	<hr />
+		<button class="active">Feedbacks</button>
+
+		<a href="{% url 'contribute' %}">
+			<button>contribute</button>
+		</a>
+		<hr />
 
 
-  <p>{{feedback.feedback}}</p>
+	  <p>{{feedback.feedback}}</p>
 
-  <hr />
+	  <hr />
 
-{% endfor %}
+	{% endfor %}
 
 {% endblock %}
