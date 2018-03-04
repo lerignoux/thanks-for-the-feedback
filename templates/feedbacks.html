@@ -2,22 +2,10 @@
 
 {% block content %}
 	{% block menu %}
-		{% include "menu.html" with current="feedbacks" %}
+		{% include "menu.html" with current="feedbacks" campaign="true" %}
 	{% endblock %}
 
 	{% for feedback in feedbacks %}
-
-		<a href="{% url 'home' %}">
-			<button href="{% url 'home' %}">Settings</button>
-		</a>
-
-		<button class="active">Feedbacks</button>
-
-		<a href="{% url 'contribute' %}">
-			<button>contribute</button>
-		</a>
-		<hr />
-
 
 	  <p>{{feedback.feedback}}</p>
 
