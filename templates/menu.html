@@ -1,26 +1,23 @@
 <a href="{% url 'home' %}">
   {% if current == "home" %}
-  <button class='active' type="submit">Settings</button>
+  <button class='active'>Campaign settings</button>
   {% else %}
-  <button type="submit">Settings</button>
+  <button>Settings</button>
   {% endif %}
 </a>
 
+
+{% if campaign %}
 <a href="{% url 'feedbacks' %}">
   {% if current == "feedbacks" %}
-  <button class='active' type="submit">Feedbacks</button>
+  <button class='active'>Feedbacks</button>
   {% else %}
-  <button type="submit">Feedbacks</button>
+  <button>Feedbacks</button>
   {% endif %}
 </a>
-
-<a href="{% url 'contribute' %}">
-  {% if current == "contribute" %}
-  <button class='active' type="submit">Contribute</button>
-  {% else %}
-  <button type="submit">Contribute</button>
-  {% endif %}
-</a>
+{% else%}
+  <button class='disabled'>Feedbacks</button>
+{% endif %}
 
 <a href="{% url 'account_logout' %}">
   <span style=" vertical-align: middle;" class="logout icon fa-power-off"></span>

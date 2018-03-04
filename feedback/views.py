@@ -71,4 +71,4 @@ def feedback(request, campaign_id):
 
 
 def thankyou(request):
-    return render(request, 'thankyou.html')
+    return render(request, 'thankyou.html', {})

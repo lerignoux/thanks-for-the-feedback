@@ -7,7 +7,7 @@
 	{% endblock %}
 
   {% if not campaign %}
-  <p>You don't have any active campaign</p>
+  <p>You don't have any active feedback campaign</p>
   <form method="POST" class="campaign-form">
     {% csrf_token %}
     <button type="submit">Create a campaign</button>
