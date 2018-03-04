@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 
 {% load i18n %}
-{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+{% block head_title %}{% trans "Thank you for your feedback" %}{% endblock %}
 
 {% block frame %}
 	<header>
     <h1>{% trans "Thank you for your feedback" %}</h1>
+
+		<a href="{% url 'home' %}">
+		  <button type="submit">I want some feedback too</button>
+		</a>
+
 	</header>
 
 {% endblock %}

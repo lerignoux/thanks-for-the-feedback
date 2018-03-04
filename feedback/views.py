@@ -63,7 +63,7 @@ def feedback(request, campaign_id):
             feedback.campaign = Campaign.objects.get(id=campaign_id)
             feedback.creation_date = timezone.now()
             feedback.save()
-            return redirect('thankyou.html')
+            return redirect('thankyou')
 
     form = FeedbackForm()
     campaign = Campaign.objects.get(id=campaign_id)
