@@ -11,6 +11,11 @@ from qrcode.image import svg
 log = logging.getLogger(__name__)
 
 
+default_message = """Hello
+Welcome on tftf, please give me feedback for self improvement.
+"""
+
+
 def default_expiration_date():
     return timezone.now() + timedelta(days=90)
 
@@ -18,7 +23,7 @@ def default_expiration_date():
 class Campaign(models.Model):
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    message = models.TextField(default='')
+    message = models.TextField(default=default_message)
     creation_date = models.DateTimeField(default=timezone.now)
     expiration_date = models.DateTimeField(default=default_expiration_date)
 
