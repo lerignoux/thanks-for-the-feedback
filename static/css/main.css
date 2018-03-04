@@ -541,6 +541,19 @@ pre {
   cursor: text;
   font-size: 0.8em; }
 
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  text-align: center;
+  margin-left: -50px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1; }
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible; }
+
 /* Main */
 #main {
   position: relative;
@@ -565,6 +578,20 @@ pre {
   -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
   -ms-transition: opacity 1s ease, -ms-transform 1s ease;
   transition: opacity 1s ease, transform 1s ease; }
+  #main .logout {
+    cursor: pointer; }
+  #main .logout:hover {
+    color: #008899; }
+  #main a:active, #main a:focus, #main input {
+    outline: 0;
+    outline-style: none;
+    outline-width: 0; }
+  #main button::-moz-focus-inner,
+  #main input[type="reset"]::-moz-focus-inner,
+  #main input[type="button"]::-moz-focus-inner,
+  #main input[type="submit"]::-moz-focus-inner,
+  #main input[type="file"] > input[type="button"]::-moz-focus-inner {
+    border: none; }
   #main .avatar {
     position: relative;
     display: block;
