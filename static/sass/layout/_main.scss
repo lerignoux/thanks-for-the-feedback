@@ -14,7 +14,7 @@
 		position: relative;
 		max-width: 100%;
 		min-width: 27em;
-		@include padding(4.5em, 3em);
+		@include padding(1em, 3em);
 
 		background: _palette(bg);
     background: rgba(_palette(bg), 0.7);
@@ -55,6 +55,10 @@
 
 		/// end custom
 
+		.info {
+			margin-right: 6px;
+		}
+
 		.avatar {
 			position: relative;
 			display: block;
@@ -80,6 +84,9 @@
 			}
 		}
 
+	.avatar.short {
+		margin-bottom: 0;
+	}
 		@include breakpoint(xsmall) {
 			min-width: 0;
 			width: 100%;

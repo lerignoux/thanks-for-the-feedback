@@ -1,11 +1,26 @@
 {% extends 'account_frame.html' %}
 
+{% load static %}
 {% block frame %}
 
+<span class="avatar short"><img src="{% static "logo.png" %}" alt="user_icon" /></span>
+<p>
+  <span class="tooltip formated"><i class="info fa fa-info"></i>
+    <span class="tooltiptext">
+      - The gathered feedback is anonymous.<br/>
+      - The person who requested this feedback will only see all his feedbacks messages in chronological order (feedback time is not known).<br/>
+      - Please try to provide an objective feedback, the goal is self improvement.
+    </span>
+  </span>
+  Anonymous feedback service:
+</p>
+
 <p>{{message}}</p>
+
 <form method="POST" class="post-form">{% csrf_token %}
     <textarea name="feedback" id="feedback" rows=6 cols=80 required></textarea>
-    <button type="submit" class="save btn btn-default">Save</button>
+    <br/>
+    <button type="submit" class="save btn btn-default">Send feedback</button>
 </form>
 
 {% endblock %}

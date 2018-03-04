@@ -1,0 +1,29 @@
+.tooltip {
+  cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    text-align: center;
+    width: 100px;
+    margin-left: -50px;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip.formated .tooltiptext {
+    text-align: left;
+    font-size: 0.8em;
+    margin-top: 2em;
+    padding: 1em;
+    width: auto;
+    background-color: _palette(bg-dark);
+		border-radius: _size(border-radius);
+		border: solid 1px _palette(border);
+}
