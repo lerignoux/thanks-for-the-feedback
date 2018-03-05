@@ -51,7 +51,7 @@ class Campaign(models.Model):
 
         qr_str = output.read()
         if not png:
-            qr_str = qr_str.decode("utf-8")
+            qr_str = qr_str.decode("utf-8").replace("#000000", "#333333")
 
         return qr_str
 
