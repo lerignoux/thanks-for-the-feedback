@@ -38,6 +38,10 @@
 			color: _palette(highlight);
 		}
 
+    .text-wrap {
+      word-wrap: break-word;
+    }
+
 		/// custom Disable click dotted border on click
 		a:active, a:focus, input {
 	    outline: 0;

@@ -540,7 +540,8 @@ button,
 pre {
   background-color: #333333;
   cursor: text;
-  font-size: 0.8em; }
+  font-size: 0.8em;
+  overflow: hidden; }
 
 .tooltip {
   cursor: pointer; }
@@ -596,6 +597,8 @@ pre {
     cursor: pointer; }
   #main .logout:hover {
     color: #008899; }
+  #main .text-wrap {
+    word-wrap: break-word; }
   #main a:active, #main a:focus, #main input {
     outline: 0;
     outline-style: none;
