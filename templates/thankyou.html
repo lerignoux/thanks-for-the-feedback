@@ -6,9 +6,10 @@
 <span class="avatar short"><img src="{% static "logo.png" %}" alt="user_icon" /></span>
 <h1>{% trans "Thank you for your feedback" %}</h1>
 
-<form>
-	<a href="{% url 'home' %}">
-	  <button>I want some feedback too</button>
-	</a>
-</form>
+<a href="{% url 'home' %}">
+  <button>I want some feedback too</button>
+</a>
+<br/>
+<br/>
+
 {% endblock %}
