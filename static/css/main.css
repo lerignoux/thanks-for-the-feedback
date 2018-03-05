@@ -575,7 +575,7 @@ pre {
   min-width: 27em;
   padding: 1em 3em 0.1em 3em ;
   background: #414141;
-  background: rgba(65, 65, 65, 0.7);
+  background: rgba(65, 65, 65, 0.5);
   border-radius: 4px;
   cursor: default;
   opacity: 0.95;

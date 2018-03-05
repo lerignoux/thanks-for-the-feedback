@@ -17,7 +17,7 @@
 		@include padding(1em, 3em);
 
 		background: _palette(bg);
-    background: rgba(_palette(bg), 0.7);
+    background: rgba(_palette(bg), 0.5);
 		border-radius: _size(border-radius);
 		cursor: default;
 		opacity: 0.95;
