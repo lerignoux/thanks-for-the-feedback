@@ -1,8 +1,9 @@
-{% extends 'account_frame.html' %}
+{% extends 'base.html' %}
 
-{% block content %}
+{% block frame %}
+{% load static %}
 
-  <hr />
+	<span class="avatar"><img src="{% static "logo.png" %}" alt="site_logo" /></span>
 
   <h1>Contribute</h1>
 	<p> If you liked the project and want to contribute, thank you a lot.<br/>
