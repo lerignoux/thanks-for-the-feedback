@@ -601,6 +601,12 @@ pre {
     word-wrap: break-word; }
   #main .text-link {
     color: #00a1d0; }
+  #main a.disabled {
+    -moz-pointer-events: none;
+    -webkit-pointer-events: none;
+    -ms-pointer-events: none;
+    pointer-events: none;
+    opacity: 0.5; }
   #main a:active, #main a:focus, #main input {
     outline: 0;
     outline-style: none;

@@ -46,6 +46,11 @@
       color: _palette(accent2);
     }
 
+    a.disabled {
+			@include vendor('pointer-events', 'none');
+			opacity: 0.5;
+    }
+
 		/// custom Disable click dotted border on click
 		a:active, a:focus, input {
 	    outline: 0;
