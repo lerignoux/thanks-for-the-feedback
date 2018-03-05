@@ -42,6 +42,10 @@
       word-wrap: break-word;
     }
 
+    .text-link {
+      color: _palette(accent2);
+    }
+
 		/// custom Disable click dotted border on click
 		a:active, a:focus, input {
 	    outline: 0;

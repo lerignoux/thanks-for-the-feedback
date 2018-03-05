@@ -599,6 +599,8 @@ pre {
     color: #008899; }
   #main .text-wrap {
     word-wrap: break-word; }
+  #main .text-link {
+    color: #00a1d0; }
   #main a:active, #main a:focus, #main input {
     outline: 0;
     outline-style: none;

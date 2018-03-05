@@ -8,9 +8,14 @@
 	{% for feedback in feedbacks %}
 
 	  <p class="text-wrap">{{feedback.feedback}}</p>
+    <hr />
 
-	  <hr />
-
+  {% empty %}
+    <p>
+      You don't have any feedback yet.<br/>
+      configure and share a campaign link from your <a class="text-link" href="{% url 'home' %}">campaign settings</a> to gather some.
+    </p>
+    <br/>
 	{% endfor %}
 
 {% endblock %}
