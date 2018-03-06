@@ -16,7 +16,7 @@
 
   {% if not campaign %}
   {% else %}
-	<h2 class="icon fa-share"><span class="label">Your feedback link</span>Your feedback link</h2>
+	<h2><i class="fa fa-share"></i>Your feedback link</h2>
 	<pre id="campaignLink" style="padding-left: 6px; padding-right: 4px;">https://tftf.eu/feedback/{{ campaign.id }}</pre>
 
   <br/>
@@ -40,9 +40,9 @@
 
 	<hr />
 
-	<h2 class="icon fa-cog"><span class="label">Settings</span>Settings</h2>
-	<p class="icon fa-calendar-times-o"><span class="label">Valid until</span>Valid until {{expiration_date}}</p>
-  <p class="icon fa-comment"><span class="label">Feedback message</span>Feedback message</p>
+	<h2><i class="fa fa-cog"></i>Settings</h2>
+	<p><i class="fa fa-calendar-times"></i>Valid until {{expiration_date}}</p>
+  <p><i class="fa fa-comment"></i>Feedback message</p>
   <form method="POST" class="campaign-form">
     {% csrf_token %}
     <textarea name="message" id="message" rows=5 required>{{campaign.message}}</textarea>
