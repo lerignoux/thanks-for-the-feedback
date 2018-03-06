@@ -17,6 +17,11 @@
     visibility: visible;
 }
 
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
 .tooltip.formated .tooltiptext {
     text-align: left;
     font-size: 0.8em;
