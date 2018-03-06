@@ -556,7 +556,7 @@ pre {
   z-index: 1; }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
+.tooltip:active .tooltiptext {
   visibility: visible; }
 
 .tooltip.formated .tooltiptext {
@@ -595,7 +595,7 @@ pre {
   transition: opacity 1s ease, transform 1s ease; }
   #main .logout {
     cursor: pointer; }
-  #main .logout:hover {
+  #main .logout:active {
     color: #008899; }
   #main .text-wrap {
     word-wrap: break-word; }
