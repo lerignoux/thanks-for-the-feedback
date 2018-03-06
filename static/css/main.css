@@ -593,9 +593,11 @@ pre {
   -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
   -ms-transition: opacity 1s ease, -ms-transform 1s ease;
   transition: opacity 1s ease, transform 1s ease; }
-  #main .logout {
+  #main .iconButton {
     cursor: pointer; }
-  #main .logout:active {
+  #main .iconButton:hover {
+    color: #008899; }
+  #main .iconButton:active {
     color: #008899; }
   #main .text-wrap {
     word-wrap: break-word; }

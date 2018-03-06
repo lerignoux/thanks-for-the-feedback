@@ -26,13 +26,28 @@ window.onload = function () {
       xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
       xhr.onload = function() {
           if (xhr.status === 200) {
-              alert('Logged out');
+              window.location.href = "";
           }
           else if (xhr.status !== 200) {
               alert('Request failed. Couldnot logout');
           }
       };
       xhr.send();
-      alert("logout");
   }
+
+  // Direct logout on button click
+  // document.getElementById("logoutButton").addEventListener("click", logout);
+
+  toClipboard = function(){
+    let data = document.getElementById("campaignLink").firstChild.data,
+        copyFrom = document.createElement("textarea");
+    document.body.appendChild(copyFrom);
+    copyFrom.textContent = data;
+    copyFrom.select();
+    document.execCommand("copy");
+    copyFrom.remove();
+  }
+
+  // Clipboard copy
+  document.getElementById('clipboardButton').addEventListener("click", toClipboard);
 }

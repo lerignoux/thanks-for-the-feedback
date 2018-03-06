@@ -17,7 +17,10 @@
   {% if not campaign %}
   {% else %}
 	<h2><i class="fa fa-share"></i>Your feedback link</h2>
-	<pre id="campaignLink" style="padding-left: 6px; padding-right: 4px;">{{ campaign.link }}</pre>
+  <div style="display: flex; flex-direction: row; align-items: center">
+  	<pre id="campaignLink" style="padding-left: 6px; padding-right: 4px;">{{ campaign.link }}</pre>
+    <i id="clipboardButton" class="iconButton fa fa-clipboard" style="margin-left: 6px;"></i>
+  </div>
 
   <br/>
 

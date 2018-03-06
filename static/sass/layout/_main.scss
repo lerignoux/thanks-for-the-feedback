@@ -30,11 +30,15 @@
 			'transform #{_duration(main)} ease'
 		));
 
-		.logout {
+		.iconButton {
 			cursor: pointer;
 		}
 
-		.logout:active {
+		.iconButton:hover {
+			color: _palette(highlight);
+		}
+
+		.iconButton:active {
 			color: _palette(highlight);
 		}
 
