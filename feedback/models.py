@@ -30,10 +30,13 @@ class Campaign(models.Model):
     def __str__(self):
         return "Feedback campaign started the %s valid until %s" % (self.creation_date, self.expiration_date)
 
-    def qr_code(self, host, png=False):
-        url = "{host}/feedback/{campaign_id}".format(
+    def url(self, host):
+        return "{host}/feedback/{campaign_id}".format(
             host=host, campaign_id=self.id
         )
+
+    def qr_code(self, host, png=False):
+        url = self.url(host)
 
         qr = qrcode.QRCode()
         qr.add_data(url)

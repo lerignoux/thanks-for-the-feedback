@@ -23,6 +23,7 @@ def home(request):
                 campaign.message = request.POST['message']
                 campaign.save()
         if campaign:
+            campaign.link = campaign.url(request.get_host())
             qrcode = campaign.qr_code(request.get_host())
             form = CampaignForm(instance=campaign)
             return render(request, 'home.html', {'form': form, 'campaign': campaign, 'qr_code': qrcode, 'expiration_date': campaign.expiration_date})
