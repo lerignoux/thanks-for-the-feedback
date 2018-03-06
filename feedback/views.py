@@ -1,5 +1,5 @@
 import logging
-import os
+from urllib.parse import urlencode
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.http import HttpResponse
@@ -23,6 +23,8 @@ def home(request):
                 campaign.message = request.POST['message']
                 campaign.save()
         if campaign:
+            mail_link = campaign.mail_request(request.get_host())
+            campaign.mailLink = mail_link.replace('\n', '%0A')
             campaign.link = campaign.url(request.get_host())
             qrcode = campaign.qr_code(request.get_host())
             form = CampaignForm(instance=campaign)

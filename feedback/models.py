@@ -30,6 +30,9 @@ class Campaign(models.Model):
     def __str__(self):
         return "Feedback campaign started the %s valid until %s" % (self.creation_date, self.expiration_date)
 
+    def mail_request(self, host):
+        return "mailto:?subject=Thanks for the feedback&body=Hello\n\nCould you please send me some anonymous feedback at:\n%s\n\nThank you." % self.url(host)
+
     def url(self, host):
         return "{host}/feedback/{campaign_id}".format(
             host=host, campaign_id=self.id
