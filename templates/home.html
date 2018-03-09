@@ -16,7 +16,7 @@
 
   {% if not campaign %}
   {% else %}
-	<h2><i class="fa fa-share"></i>Your feedback link</h2>
+	<h2><i class="fa fa-link"></i>Your feedback link</h2>
   <div style="display: flex; flex-direction: row; align-items: center">
   	<pre id="campaignLink" style="padding-left: 6px; padding-right: 4px;">{{ campaign.link }}</pre>
     <i id="clipboardButton" class="iconButton fa fa-clipboard" style="margin-left: 6px;"></i>
@@ -24,30 +24,28 @@
 
   <br/>
 
-  <h2>Share on (soon):
-    <a href="" class="disabled"><i class="fab fa-facebook"></i></a>
-    <a href="" class="disabled"><i class="fab fa-google"></i></a>
-    <a href="" class="disabled"><i class="fab fa-linkedin"></i></a>
-    <a href="" class="disabled"><i class="fab fa-twitter"></i></a>
-    <a href="" class="disabled"><i class="fab fa-weixin"></i></a>
-    <a href="{{ campaign.mailLink }}"><i class="fa fa-at"></i></a>
-    <a href="" class="disabled"><i class="fa fa-print"></i></a>
-  </h2>
-  <h2>QR code:
+  <h2>Share on (soon):</h2>
+  <a href="" class="disabled"><i class="fab fa-facebook"></i></a>
+  <a href="" class="disabled"><i class="fab fa-google"></i></a>
+  <a href="" class="disabled"><i class="fab fa-linkedin"></i></a>
+  <a href="" class="disabled"><i class="fab fa-twitter"></i></a>
+  <a href="" class="disabled"><i class="fab fa-weixin"></i></a>
+  <a href="{{ campaign.mailLink }}"><i class="fa fa-at"></i></a>
+  <a href="" class="disabled"><i class="fa fa-pdf"></i></a>
+  <br/>
+  <a style="cursor: url(static/download.png), auto;" href="{% url 'campaign_qr' %}">{% autoescape off %}{{ qr_code }}{% endautoescape %}</a>
+  <h2>Download your QR code:
     <a style="cursor: url(static/download.png), auto;" href="{% url 'campaign_qr' %}">
       <i class="fa fa-qrcode"></i>
     </a>
   </h2>
-  <a style="cursor: url(static/download.png), auto;" href="{% url 'campaign_qr' %}">{% autoescape off %}{{ qr_code }}{% endautoescape %}</a>
-
-
 	<hr />
 
 	<h2><i class="fa fa-cog"></i>Settings</h2>
-	<p><i class="fa fa-calendar-times"></i>Valid until {{expiration_date}}</p>
-  <p><i class="fa fa-comment"></i>Feedback message</p>
+	<p>Valid until {{expiration_date}}</p>
   <form method="POST" class="campaign-form">
     {% csrf_token %}
+    <p>Message</p>
     <textarea name="message" id="message" rows=5 required>{{campaign.message}}</textarea>
     <button type="submit">Update</button>
   </form>
