@@ -45,7 +45,7 @@ class Campaign(models.Model):
         qr.add_data(url)
         qr.make(fit=True)
 
-        img = qr.make_image(fill_color="#008899", back_color="#000000") if png else qr.make_image(image_factory=svg.SvgPathImage)
+        img = qr.make_image(fill_color="#ffffff", back_color="#008899") if png else qr.make_image(image_factory=svg.SvgPathImage)
         log.info("campaign QR generated %s " % img)
 
         output = io.BytesIO()
