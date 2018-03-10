@@ -1,6 +1,6 @@
 window.onload = function () {
 
-  //first define your getCookie function
+  // get Django cookie
   getCookie = function(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);
@@ -17,6 +17,7 @@ window.onload = function () {
       return "";
   }
 
+  // Direct logout on button click
   logout = function(){
       var postUrl = "accounts/logout/",  // href attribute of clicked link
           xhr = new XMLHttpRequest();
@@ -35,9 +36,7 @@ window.onload = function () {
       xhr.send();
   }
 
-  // Direct logout on button click
-  // document.getElementById("logoutButton").addEventListener("click", logout);
-
+  // Clipboard copy
   toClipboard = function(){
     let data = document.getElementById("campaignLink").firstChild.data,
         copyFrom = document.createElement("textarea");
@@ -48,6 +47,6 @@ window.onload = function () {
     copyFrom.remove();
   }
 
-  // Clipboard copy
   document.getElementById('clipboardButton').addEventListener("click", toClipboard);
+
 }
