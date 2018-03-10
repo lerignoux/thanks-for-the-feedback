@@ -44,7 +44,7 @@ class Campaign(models.Model):
             url=self.url(host),
             title="Thanks%20For%20The%20Feedback",
             summary=quote(self.message, safe=''),
-            source="host"
+            source=host
         )
 
     def qr_code(self, host, png=False):
