@@ -23,8 +23,11 @@
   </div>
 
   <br/>
-
-  <h2>Share on (soon):</h2>
+  <a class="qr_code" href="{% url 'campaign_qr' %}">
+    <div>{% autoescape off %}{{ qr_code }}{% endautoescape %}</div>
+    <div style="margin-top: -18px; margin-bottom:9px;">Download</div>
+  </a>
+  <h2>Share (soon):</h2>
   <a href="" class="disabled"><i class="fab fa-facebook"></i></a>
   <a href="" class="disabled"><i class="fab fa-google"></i></a>
   <a target="popup" href="{{campaign.linkedin}}"><i class="fab fa-linkedin"></i></a>
@@ -32,13 +35,6 @@
   <a href="" class="disabled"><i class="fab fa-weixin"></i></a>
   <a href="{{ campaign.mailLink }}"><i class="fa fa-at"></i></a>
   <a href="" class="disabled"><i class="fa fa-pdf"></i></a>
-  <br/>
-  <a class="qr_code" href="{% url 'campaign_qr' %}">{% autoescape off %}{{ qr_code }}{% endautoescape %}</a>
-  <h2>Download your QR code:
-    <a style="cursor: url(static/download.png), auto;" href="{% url 'campaign_qr' %}">
-      <i class="fa fa-qrcode"></i>
-    </a>
-  </h2>
 	<hr />
 
 	<h2><i class="fa fa-cog"></i>Settings</h2>
