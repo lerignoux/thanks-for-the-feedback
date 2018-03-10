@@ -34,7 +34,7 @@ class Campaign(models.Model):
         return "mailto:?subject=Thanks for the feedback&body=Hello\n\nCould you please send me some anonymous feedback at:\n%s\n\nThank you." % self.url(host)
 
     def url(self, host):
-        return "{host}/feedback/{campaign_id}".format(
+        return "https://{host}/feedback/{campaign_id}".format(
             host=host, campaign_id=self.id
         )
 
@@ -57,7 +57,7 @@ class Campaign(models.Model):
 
         qr_str = output.read()
         if not png:
-            qr_str = qr_str.decode("utf-8").replace("#000000", "#333333")
+            qr_str = qr_str.decode("utf-8").replace("#000000", "#325f73")
 
         return qr_str
 

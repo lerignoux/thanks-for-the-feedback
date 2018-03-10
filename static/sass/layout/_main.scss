@@ -50,6 +50,20 @@
       color: _palette(accent2);
     }
 
+		.qr_code svg{
+			background-color: rgba(_palette(fg), 0.9);
+			cursor: url("../download.png"), auto;
+		}
+
+		.qr_code svg:hover{
+			cursor: url("../download.png"), auto;
+			-moz-box-shadow: 2px 2px 3px 2px #333333;
+			-webkit-box-shadow: 2px 2px 3px 2px #333333;
+			-o-box-shadow: 2px 2px 3px 2px #333333;
+			box-shadow: 2px 2px 3px 2px #333333;
+			filter:progid:DXImageTransform.Microsoft.Shadow(color=#333333, Direction=134, Strength=3);
+		}
+
     a.disabled {
 			@include vendor('pointer-events', 'none');
 			opacity: 0.5;
