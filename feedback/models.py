@@ -38,6 +38,14 @@ class Campaign(models.Model):
             host=host, campaign_id=self.id
         )
 
+    def linkedin_url(self, host):
+        return "https://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}&summary{summary}&source={source}".format(
+            url=self.url(host),
+            title="Thanks%20For%20The%20Feedback",
+            summary="Please%20give%20me%20some%20feedback",
+            source="host"
+        )
+
     def qr_code(self, host, png=False):
         url = self.url(host)
 

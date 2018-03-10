@@ -26,6 +26,7 @@ def home(request):
             mail_link = campaign.mail_request(request.get_host())
             campaign.mailLink = mail_link.replace('\n', '%0A')
             campaign.link = campaign.url(request.get_host())
+            campaign.linkedin = campaign.linkedin_url(request.get_host())
             qrcode = campaign.qr_code(request.get_host())
             form = CampaignForm(instance=campaign)
             return render(request, 'home.html', {'form': form, 'campaign': campaign, 'qr_code': qrcode,
