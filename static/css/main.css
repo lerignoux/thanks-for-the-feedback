@@ -536,6 +536,19 @@ button,
   .button.active {
     border-color: #008899;
     color: #008899 !important; }
+  input[type="submit"].danger,
+  input[type="reset"].danger,
+  input[type="button"].danger,
+  button.danger,
+  .button.danger {
+    border-color: #ff0000;
+    color: #ff0000 !important; }
+  input[type="submit"].danger:hover,
+  input[type="reset"].danger:hover,
+  input[type="button"].danger:hover,
+  button.danger:hover,
+  .button.danger:hover {
+    font-weight: bold; }
 
 pre {
   background-color: #333333;

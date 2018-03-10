@@ -8,6 +8,7 @@
 	{% for feedback in feedbacks %}
 
 	  <p class="text-wrap">{{feedback.feedback}}</p>
+	  <button class="danger" onclick="deleteFeedback({{feedback.id}})">delete</button>
     <hr />
 
   {% empty %}

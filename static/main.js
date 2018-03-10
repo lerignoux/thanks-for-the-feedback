@@ -47,6 +47,38 @@ window.onload = function () {
     copyFrom.remove();
   }
 
-  document.getElementById('clipboardButton').addEventListener("click", toClipboard);
 
+  deactivateCampaign = function(){
+    var deleteUrl = "campaign/" + document.getElementById("campaignId").value,
+        xhr = new XMLHttpRequest();
+
+    xhr.open('DELETE', deleteUrl, true);
+    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        window.location.href = "";
+      }
+      else if (xhr.status !== 200) {
+        alert('Failed deactivating your campaign');
+      }
+    };
+    xhr.send();
+  }
+
+  deleteFeedback = function(feedback_id){
+    var deleteUrl = "feedbacks/" + feedback_id,
+        xhr = new XMLHttpRequest();
+
+    xhr.open('DELETE', deleteUrl, true);
+    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        window.location.href = "feedbacks";
+      }
+      else if (xhr.status !== 200) {
+        alert('Failed deleting the feedback');
+      }
+    };
+    xhr.send();
+  }
 }

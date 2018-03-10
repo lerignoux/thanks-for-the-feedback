@@ -8,7 +8,7 @@
 
   {% if not campaign %}
   <p>Start a campaign to receive feedback</p>
-  <form method="POST" class="campaign-form">
+  <form action="{% url 'campaign' %}" method="POST" class="campaign-form">
     {% csrf_token %}
     <button type="submit">Create a campaign</button>
   </form>
@@ -19,11 +19,11 @@
 	<h2><i class="fa fa-link"></i>Your campaign link</h2>
   <div style="display: flex; flex-direction: row; align-items: center">
   	<pre id="campaignLink" style="padding-left: 6px; padding-right: 4px;">{{ campaign.link }}</pre>
-    <i id="clipboardButton" class="iconButton fa fa-clipboard" style="margin-left: 6px;"></i>
+    <i id="clipboardButton" class="iconButton fa fa-clipboard" style="margin-left: 6px;" onclick="toClipboard()"></i>
   </div>
 
   <br/>
-  <a class="qr_code" href="{% url 'campaign_qr' %}">
+  <a class="qr_code" href="{% url 'campaign' %}{{campaign.id}}/qr">
     <div>{% autoescape off %}{{ qr_code }}{% endautoescape %}</div>
     <div style="margin-top: -18px; margin-bottom:9px;">Download</div>
   </a>
@@ -39,13 +39,15 @@
 
 	<h2><i class="fa fa-cog"></i>Settings</h2>
 	<p>Valid until {{expiration_date}}</p>
-  <form method="POST" class="campaign-form">
+  <form action="{% url 'campaign' %}{{campaign.id}}"  method="POST" class="campaign-form">
     {% csrf_token %}
     <p>Message</p>
     <textarea name="message" id="message" rows=5 required>{{campaign.message}}</textarea>
     <button type="submit">Update</button>
   </form>
 
+  <input type="hidden" id="campaignId" name="campaign_id" value="{{ campaign.id }}">
+  <button class="danger" onclick="deactivateCampaign()">Deactivate campaign</button>
   {% endif %}
 
   	<hr />
