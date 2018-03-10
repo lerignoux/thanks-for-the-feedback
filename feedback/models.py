@@ -1,6 +1,7 @@
 import io
 import logging
 import uuid
+from urllib.parse import quote
 from datetime import timedelta
 from django.db import models
 from django.utils import timezone
@@ -39,10 +40,10 @@ class Campaign(models.Model):
         )
 
     def linkedin_url(self, host):
-        return "https://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}&summary{summary}&source={source}".format(
+        return "https://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}&summary={summary}&source={source}".format(
             url=self.url(host),
             title="Thanks%20For%20The%20Feedback",
-            summary="Please%20give%20me%20some%20feedback",
+            summary=quote(self.message, safe=''),
             source="host"
         )
 
