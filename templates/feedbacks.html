@@ -5,18 +5,22 @@
 		{% include "menu.html" with current="feedbacks" campaign="true" %}
 	{% endblock %}
 
+	<div class="feedbacks">
 	{% for feedback in feedbacks %}
 
-	  <p class="text-wrap">{{feedback.feedback}}</p>
-	  <button class="danger" onclick="deleteFeedback({{feedback.id}})">delete</button>
+		<div class="feedback">
+		  <p class="text-wrap">{{feedback.feedback}}</p>
+		  <div onclick="deleteFeedback({{feedback.id}})" class="delete"><i class="fa fa-trash-alt"></i></div>
+		</div>
     <hr />
 
-  {% empty %}
-    <p>
-      You don't have any feedback yet.<br/>
-      configure and share a campaign link from your <a class="text-link" href="{% url 'home' %}">campaign settings</a> to gather some.
-    </p>
+	  {% empty %}
+	    <p>
+	      You don't have any feedback yet.<br/>
+	      configure and share a campaign link from your <a class="text-link" href="{% url 'home' %}">campaign settings</a> to gather some.
+	    </p>
+		</div>
     <br/>
 	{% endfor %}
-
+	</div>
 {% endblock %}

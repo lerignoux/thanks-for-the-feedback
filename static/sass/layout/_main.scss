@@ -50,6 +50,25 @@
       color: _palette(accent2);
     }
 
+		.feedbacks{
+			.feedback {
+				position: relative;
+
+				.delete {
+					color: _palette(warning) !important;
+					cursor: pointer;
+					position: absolute;
+					right: 0px;
+					top: 0px;
+					margin-top: -56px;
+				}
+
+				.delete:hover {
+					color: _palette(danger) !important;
+				}
+			}
+		}
+
 		.qr_code svg{
 			background-color: rgba(_palette(fg), 0.9);
 			cursor: url("../download.png"), auto;

@@ -541,8 +541,8 @@ button,
   input[type="button"].danger,
   button.danger,
   .button.danger {
-    border-color: #ff0000;
-    color: #ff0000 !important; }
+    border-color: #ee0000;
+    color: #ee0000 !important; }
   input[type="submit"].danger:hover,
   input[type="reset"].danger:hover,
   input[type="button"].danger:hover,
@@ -620,6 +620,17 @@ pre {
     word-wrap: break-word; }
   #main .text-link {
     color: #00a1d0; }
+  #main .feedbacks .feedback {
+    position: relative; }
+    #main .feedbacks .feedback .delete {
+      color: #880000 !important;
+      cursor: pointer;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      margin-top: -56px; }
+    #main .feedbacks .feedback .delete:hover {
+      color: #ee0000 !important; }
   #main .qr_code svg {
     background-color: rgba(225, 239, 247, 0.9);
     cursor: url("../download.png"), auto; }
