@@ -7,7 +7,6 @@
 </a>
 
 
-{% if campaign %}
 <a href="{% url 'feedbacks' %}">
   {% if current == "feedbacks" %}
   <button class='active'>Feedbacks</button>
@@ -15,9 +14,6 @@
   <button>Feedbacks</button>
   {% endif %}
 </a>
-{% else%}
-  <button class='disabled'>Feedbacks</button>
-{% endif %}
 
 <span id="logoutButton" onclick="logout()" style=" vertical-align: middle;">
   <i class="iconButton fa fa-power-off"></i>

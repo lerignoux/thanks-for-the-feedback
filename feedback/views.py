@@ -63,7 +63,7 @@ def feedbacks(request, feedback_id=None):
         if request.method == "DELETE":
             get_object_or_404(Feedback, id=feedback_id).delete()
 
-        campaigns = Campaign.objects.filter(user=user, expiration_date__gte=timezone.now()).order_by('-creation_date')
+        campaigns = Campaign.objects.filter(user=user).order_by('-creation_date')
         feedbacks = Feedback.objects.filter(campaign__in=campaigns).order_by('-creation_date')
         return render(request, 'feedbacks.html', {'feedbacks': feedbacks})
     else:
