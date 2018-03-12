@@ -62,7 +62,7 @@ html {
 
 body {
   height: 100%;
-  background-color: #414141;
+  background-color: #212121;
   background-image: url("images/overlay.png"), -moz-linear-gradient(60deg, rgba(68, 0, 80, 0.5) 5%, rgba(0, 161, 208, 0.35)), url("../bg.jpg");
   background-image: url("images/overlay.png"), -webkit-linear-gradient(60deg, rgba(68, 0, 80, 0.5) 5%, rgba(0, 161, 208, 0.35)), url("../bg.jpg");
   background-image: url("images/overlay.png"), -ms-linear-gradient(60deg, rgba(68, 0, 80, 0.5) 5%, rgba(0, 161, 208, 0.35)), url("../bg.jpg");
@@ -81,7 +81,7 @@ body {
     height: inherit;
     opacity: 0;
     z-index: 1;
-    background-color: #414141;
+    background-color: #212121;
     background-image: url("images/overlay.png"), -moz-linear-gradient(60deg, rgba(68, 0, 80, 0.5) 5%, rgba(0, 161, 208, 0.35));
     background-image: url("images/overlay.png"), -webkit-linear-gradient(60deg, rgba(68, 0, 80, 0.5) 5%, rgba(0, 161, 208, 0.35));
     background-image: url("images/overlay.png"), -ms-linear-gradient(60deg, rgba(68, 0, 80, 0.5) 5%, rgba(0, 161, 208, 0.35));
@@ -412,7 +412,7 @@ ul {
           font-weight: normal;
           text-transform: none !important; }
         ul.icons li a:before {
-          color: #414141;
+          color: #212121;
           text-shadow: 1.25px 0px 0px #c8cccf, -1.25px 0px 0px #c8cccf, 0px 1.25px 0px #c8cccf, 0px -1.25px 0px #c8cccf; }
         ul.icons li a:hover:before {
           text-shadow: 1.25px 0px 0px #008899, -1.25px 0px 0px #008899, 0px 1.25px 0px #008899, 0px -1.25px 0px #008899; }
@@ -592,8 +592,8 @@ pre {
   max-width: 100%;
   min-width: 27em;
   padding: 1em 3em 0.1em 3em ;
-  background: #414141;
-  background: rgba(65, 65, 65, 0.5);
+  background: #212121;
+  background: rgba(33, 33, 33, 0.8);
   border-radius: 4px;
   cursor: default;
   opacity: 0.95;
