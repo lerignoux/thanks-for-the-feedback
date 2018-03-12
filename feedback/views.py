@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import get_object_or_404
+from django.template import Context, loader
 
 from .forms import FeedbackForm, CampaignForm
 from .models import Campaign, Feedback
@@ -48,7 +50,7 @@ def campaign(request, campaign_id=None):
 def campaign_qr(request, campaign_id):
     user = request.user
     if user.is_authenticated:
-        campaign = Campaign.objects.get(id=campaign_id)
+        campaign = get_object_or_404(Campaign, id=campaign_id)
         response = HttpResponse(campaign.qr_code(request.get_host(), png=True), content_type="application/png")
         response['Content-Disposition'] = 'inline; filename=tftf_qr.png'
         return response
@@ -59,7 +61,7 @@ def feedbacks(request, feedback_id=None):
     if user.is_authenticated:
 
         if request.method == "DELETE":
-            Feedback.objects.get(id=feedback_id).delete()
+            get_object_or_404(Feedback, id=feedback_id).delete()
 
         campaigns = Campaign.objects.filter(user=user, expiration_date__gte=timezone.now()).order_by('-creation_date')
         feedbacks = Feedback.objects.filter(campaign__in=campaigns).order_by('-creation_date')
@@ -74,19 +76,19 @@ def contribute(request):
 
 def feedback(request, campaign_id):
     try:
-        campaign = Campaign.objects.get(id=campaign_id, expiration_date__gte=timezone.now())
+        campaign = get_object_or_404(Campaign, id=campaign_id, expiration_date__gte=timezone.now())
     except ObjectDoesNotExist:
         return render(request, 'bad_campaign.html', {})
     if request.method == "POST":
         form = FeedbackForm(request.POST)
         if form.is_valid():
             feedback = form.save(commit=False)
-            feedback.campaign = Campaign.objects.get(id=campaign_id)
+            feedback.campaign = get_object_or_404(Campaign, id=campaign_id)
             feedback.creation_date = timezone.now()
             feedback.save()
             return redirect('thankyou')
     form = FeedbackForm()
-    campaign = Campaign.objects.get(id=campaign_id)
+    campaign = get_object_or_404(Campaign, id=campaign_id)
     return render(request, 'feedback.html', {'form': form, 'message': campaign.message})
 
 
@@ -96,3 +98,9 @@ def bad_campaign(request):
 
 def thankyou(request):
     return render(request, 'thankyou.html', {})
+
+
+def error404(request):
+    template = loader.get_template('404.html')
+    context = Context({'message': 'All: %s' % request})
+    return HttpResponse(content=template.render(context), content_type='text/html; charset=utf-8', status=404)
