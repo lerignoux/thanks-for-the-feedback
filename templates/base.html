@@ -19,6 +19,10 @@
 		<link rel="shortcut icon" type="image/png" href="{% static "favicon.png" %}"/>
 		<script type="text/javascript" src="{% static "main.js" %}"></script>
 
+		<!-- Konami scripts -->
+		<script async type="text/javascript" src="{% static "konami.js" %}"></script>
+		<script async type="text/javascript" src="{% static "game.js" %}"></script>
+
 		<!-- Linkedin sharing ressources -->
 		<meta property="og:title" content="Thanks for the feedback" />
 		<meta property="og:description" content="An anonymous feedback service" />
@@ -31,10 +35,12 @@
 			<div id="wrapper">
 
 				<!-- Main -->
-					<section id="main">
-            {% block frame %}
-            {% endblock %}
-					</section>
+				<section id="main">
+					<div id="targets">
+	          {% block frame %}
+	          {% endblock %}
+					</div>
+				</section>
 
 				<!-- Footer -->
 					<footer id="footer">
