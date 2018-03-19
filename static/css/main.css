@@ -554,6 +554,7 @@ pre {
   background-color: #333333;
   cursor: text;
   font-size: 0.8em;
+  text-transform: initial;
   overflow: hidden; }
 
 .tooltip {
