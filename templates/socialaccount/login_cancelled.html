@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block frame %}
+	<header>
+    <h1>Login cancelled</h1>
+
+		<a href="{% url 'home' %}">
+		  <button>back home</button>
+		</a>
+		<br/>
+		<br/>
+	</header>
+{% endblock %}
