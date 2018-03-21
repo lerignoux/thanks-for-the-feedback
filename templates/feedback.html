@@ -15,7 +15,7 @@
   Anonymous feedback service:
 </p>
 
-<p class="text-wrap">{{message}}</p>
+<p class="text-wrap">{{message|linebreaks}}</p>
 
 <form method="POST" class="post-form">{% csrf_token %}
     <textarea name="feedback" id="feedback" rows=6 cols=80 required></textarea>
