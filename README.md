@@ -24,3 +24,9 @@ to rebuild the css from sass:
 ```
 sass --watch static/sass/main.scss:static/css/main.css
 ```
+
+## Contributions
+All ideas, contributions, bugs, fixes are welcome. Please follow the usual github and open source recommendations for contributing.
+
+## Thanks
+A special He Yawen for her design ideas & corrections and [Alexis Rolland](https://github.com/alexisrolland) for his support, suggestions, tests and ideas.
