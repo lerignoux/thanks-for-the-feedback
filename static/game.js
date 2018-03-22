@@ -33,6 +33,9 @@ window.onload = function () {
     var jumping = false,
         currentLedge = null;
 
+    var waterHeight = canvas.offsetTop + canvas.offsetHeight + 50,
+        waterSpeed = 0.5;
+
     var over = false,
         success = false,
         reload = false;
@@ -48,8 +51,9 @@ window.onload = function () {
         if (["hr", "button", "textarea", "i"].indexOf(targets[i].localName) >= 0) {
           res.push(targets[i]);
         }
-        else {
-          targets[i].style.opacity = "0.5";
+        else if (["form", "a"].indexOf(targets[i].localName) < 0)
+        {
+          targets[i].style.opacity = "0.2";
         }
       }
       return res;
@@ -158,21 +162,22 @@ window.onload = function () {
       }
     }
     function LedgeDetection() {
-      if (dy > 0) {
+      if (dy >= 0) {
         // Player falling
         for(i=0; i<targets.length; i++) {
           if (getTarget(targets[i])) {
             return
           }
         }
+        console.log(ledges.length)
         for(i=0; i<ledges.length; i++) {
           if (getLedge(ledges[i])) {
-            setTimeout(function() {
-                ledges.splice(i, 1);
-            }, 2000);
-            return
+            //destroyLedge(ledges[i]);
+            setTimeout(function() {ledges.splice(i, 1); }, 1000);
+            return;
           }
         }
+        jumping = true;
         //No ledge found
         min_x = canvas.offsetLeft + ballRadius;
         max_x = canvas.offsetLeft + canvas.width - ballRadius;
@@ -185,7 +190,6 @@ window.onload = function () {
       ctx.fill();
       ctx.closePath();
     }
-
     function drawEnd() {
       ctx.beginPath();
       ctx.rect(0, canvas.offsetTop + 90, canvas.offsetWidth, 3);
@@ -205,9 +209,25 @@ window.onload = function () {
           drawledge(ledges[i]);
         }
     }
+    function drawWater() {
+      ctx.fillStyle = "rgba(0, 30, 100, 0.6)";
+      ctx.fillRect(0, waterHeight, canvas.width, canvas.height);
+    }
+    function destroyLedge(ledge) {
+      setTimeout(function(){
+        ledge.remove();
+      }, 1000);
+      //
+    }
     function movePlayer() {
+      waterHeight = waterHeight - waterSpeed;
       if (jumping === true) {
         y = y + dy;
+        if (y > canvas.offsetTop + canvas.offsetHeight) {
+          y = canvas.offsetTop + canvas.offsetHeight;
+          dy = 0;
+          jumping = false;
+        }
         if (dy + ay < max_ay) {
           // we fall faster
           dy = dy + ay
@@ -232,7 +252,7 @@ window.onload = function () {
         over = true;
         success = true;
       }
-      if (y > canvas.offsetTop + canvas.offsetHeight){
+      if (y > waterHeight){
         over = true;
       }
     }
@@ -240,6 +260,7 @@ window.onload = function () {
       drawBall();
       drawEnd();
       drawLedges();
+      drawWater();
       LedgeDetection();
       movePlayer();
     }
@@ -285,6 +306,11 @@ window.onload = function () {
         ctx.fillText("何亚雯 For her design suggestions, translation and support.", creditsX, creditsY+45);
         ctx.fillText("Alexis Roland for his big help on UX, features, ideas and debugging.", creditsX, creditsY+70);
         creditsY += creditsDy;
+
+        if (waterHeight < creditsY+95) {
+          waterHeight = creditsY+95;
+        }
+        drawWater();
     }
     function draw() {
       if (reload) {
