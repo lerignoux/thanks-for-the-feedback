@@ -3,3 +3,4 @@ django-allauth>=0.34
 Pillow>=5.0
 qrcode>=5.3
 psycopg2>=2.7
+fpdf>=1.7
