@@ -75,9 +75,36 @@ window.onload = function () {
     }
 
     var ledges = getRandomLedges();
+    if (window.DeviceMotionEvent) {
+      window.addEventListener('devicemotion', deviceOrientationHandler, false);
+    }
+
+    function deviceOrientationHandler(evt) {
+      if (evt.gamma > 0) {
+        rightPressed = true;
+      }
+      else {
+        rightPressed = false;
+      }
+      if (evt.gamma < 0) {
+        leftPressed = true;
+      }
+      else {
+        leftPressed = false;
+      }
+    }
 
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
+    document.addEventListener('touchstart', touchHandler, false);
+    function touchHandler(evt) {
+        if (!jumping) {
+          jumping = true;
+          dy = jump_dy;
+          min_x = canvas.offsetLeft;
+          max_x = canvas.offsetLeft + canvas.width;
+        }
+    }
     function keyDownHandler(evt) {
         var e = evt || event;
         var code = e.keyCode || e.which;
@@ -294,17 +321,26 @@ window.onload = function () {
           ctx.fillText("Congratulations", creditsX, creditsY-50);
         }
         else {
-          ctx.font = "30px Arial";
+          ctx.font = "22px Arial";
           ctx.fillStyle = "#aa0000";
           ctx.textAlign = 'center';
           ctx.fillText("You failed", creditsX, creditsY-50);
         }
-        ctx.font = "24px Arial";
-        ctx.fillStyle = "#325f73";
+        ctx.font = "22px Arial";
+        ctx.fillStyle = "#aaaaaa";
         ctx.textAlign = 'center';
         ctx.fillText("Special thanks to", creditsX, creditsY);
-        ctx.fillText("何亚雯 For her design suggestions, translation and support.", creditsX, creditsY+45);
-        ctx.fillText("Alexis Roland for his big help on UX, features, ideas and debugging.", creditsX, creditsY+70);
+        ctx.fillStyle = "#aaaaaa";
+        ctx.fillText("何亚雯.", creditsX, creditsY+35);
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#325f73";
+        ctx.fillText("For her design suggestions, translation and support.", creditsX, creditsY+50);
+        ctx.font = "22px Arial";
+        ctx.fillStyle = "#aaaaaa";
+        ctx.fillText("Alexis Roland", creditsX, creditsY+80);
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#325f73";
+        ctx.fillText("For his big help on UX, features, ideas and debugging.", creditsX, creditsY+95);
         creditsY += creditsDy;
 
         if (waterHeight < creditsY+95) {
@@ -318,7 +354,7 @@ window.onload = function () {
       }
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         if (over) {
-          ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+          ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
           ctx.fillRect(0,0, canvas.width, canvas.height);
           creditsFrame()
         }
