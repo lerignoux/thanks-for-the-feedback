@@ -1,3 +1,14 @@
+// Clipboard copy
+toClipboard = function(){
+  let data = document.getElementById("campaignLink").firstChild.data,
+      copyFrom = document.createElement("textarea");
+  document.body.appendChild(copyFrom);
+  copyFrom.textContent = data;
+  copyFrom.select();
+  document.execCommand("copy");
+  copyFrom.remove();
+}
+
 window.onload = function () {
 
   // get Django cookie
@@ -34,17 +45,6 @@ window.onload = function () {
           }
       };
       xhr.send();
-  }
-
-  // Clipboard copy
-  toClipboard = function(){
-    let data = document.getElementById("campaignLink").firstChild.data,
-        copyFrom = document.createElement("textarea");
-    document.body.appendChild(copyFrom);
-    copyFrom.textContent = data;
-    copyFrom.select();
-    document.execCommand("copy");
-    copyFrom.remove();
   }
 
 
