@@ -26,8 +26,10 @@
   <br/>
   <a class="qr_code" href="{% url 'campaign' %}{{campaign.id}}/qr">
     <div>{% autoescape off %}{{ qr_code }}{% endautoescape %}</div>
-    <div style="margin-top: -10px; margin-bottom:9px;">Download</div>
+    <div style="line-height: 40%">Download</div>
   </a>
+
+  <br/>
   <h2>Share:</h2>
   <a href="" class="disabled"><i class="fab fa-facebook"></i></a>
   <a href="" class="disabled"><i class="fab fa-google"></i></a>
