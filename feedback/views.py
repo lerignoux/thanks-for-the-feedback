@@ -56,6 +56,15 @@ def campaign_qr(request, campaign_id):
         return response
 
 
+def campaign_pdf(request, campaign_id):
+    user = request.user
+    if user.is_authenticated:
+        campaign = get_object_or_404(Campaign, id=campaign_id)
+        response = HttpResponse(campaign.pdf(request.get_host()), content_type="application/pdf")
+        response['Content-Disposition'] = 'attachment; filename=template.pdf'
+        return response
+
+
 def feedbacks(request, feedback_id=None):
     user = request.user
     if user.is_authenticated:

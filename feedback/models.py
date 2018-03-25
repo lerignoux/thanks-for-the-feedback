@@ -1,4 +1,5 @@
 import io
+import os
 import logging
 import uuid
 from urllib.parse import quote
@@ -8,6 +9,7 @@ from django.utils import timezone
 
 import qrcode
 from qrcode.image import svg
+from fpdf import FPDF
 
 log = logging.getLogger(__name__)
 
@@ -54,7 +56,7 @@ class Campaign(models.Model):
         qr.add_data(url)
         qr.make(fit=True)
 
-        img = qr.make_image(fill_color="#ffffff", back_color="#325f73") if png else qr.make_image(image_factory=svg.SvgPathImage)
+        img = qr.make_image(fill_color="#325f73", back_color="#ffffff") if png else qr.make_image(image_factory=svg.SvgPathImage)
         log.info("campaign QR generated %s " % img)
 
         output = io.BytesIO()
@@ -69,6 +71,32 @@ class Campaign(models.Model):
             qr_str = qr_str.decode("utf-8").replace("#000000", "#325f73")
 
         return qr_str
+
+    def pdf(self, host):
+        qr_file = '%s.png' % self.id
+        with open(qr_file, 'wb') as f:
+            f.write(self.qr_code(host, png=True))
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font("helvetica", size=52)
+        pdf.set_text_color(50, 95, 115)
+        # QR code
+        pdf.set_y(0)
+        pdf.image(qr_file, x=6, y=96, w=200)
+        # Logo
+        pdf.set_y(0)
+        pdf.image("static/logo.png", x=108, y=18, w=80)
+
+        # Text
+        pdf.set_y(0)
+        pdf.cell(100, 60, "Thanks", 0, 1, 'C')
+        pdf.set_y(0)
+        pdf.cell(100, 110, "for the", 0, 1, 'C')
+        pdf.set_y(0)
+        pdf.cell(100, 160, "feedback", 0, 1, 'C')
+        res = pdf.output(dest='S').encode('latin-1')
+        os.remove(qr_file)
+        return res
 
 
 class Feedback(models.Model):
