@@ -504,7 +504,7 @@ window.onload = function () {
         ctx.fillText("For her design suggestions, translation & support.", creditsX, creditsY+50);
         ctx.font = "22px Arial";
         ctx.fillStyle = "#aaaaaa";
-        ctx.fillText("Alexis Roland", creditsX, creditsY+80);
+        ctx.fillText("Alexis Rolland", creditsX, creditsY+80);
         ctx.font = "16px Arial";
         ctx.fillStyle = "#325f73";
         ctx.fillText("For his big help on UX, features, ideas design & debugging.", creditsX, creditsY+95);
