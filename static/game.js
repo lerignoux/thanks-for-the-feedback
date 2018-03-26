@@ -10,7 +10,6 @@ window.onload = function () {
 
     var canvasContainer = document.getElementById("main");
     var canvas = document.createElement('canvas');
-    window.scrollTo(0, document.body.scrollHeight);
     canvas.style.width = canvasContainer.scrollWidth+"px";
     canvas.style.height = canvasContainer.scrollHeight+"px";
     canvas.width=canvasContainer.scrollWidth;
@@ -41,7 +40,8 @@ window.onload = function () {
         min_x = canvas.offsetLeft + playerRadius,
         max_x = canvas.offsetLeft + canvas.width - playerRadius;
     var rightPressed = false,
-        leftPressed = false;
+        leftPressed = false,
+        rotationRef = 0;
 
     var falling = false,
         currentLedge = null;
@@ -194,13 +194,20 @@ window.onload = function () {
     }
 
     function deviceOrientationHandler(evt) {
-      if (evt.gamma > 0) {
+      rotationRef += evt.rotationRate.gamma
+      if ( rotationRef > 2) {
+        rotationRef = 2
+      }
+      if  ( rotationRef < -2) {
+        rotationRef = -2
+      }
+      if (rotationRef < -0.4) {
         rightPressed = true;
       }
       else {
         rightPressed = false;
       }
-      if (evt.gamma < 0) {
+      if (rotationRef > 0.4) {
         leftPressed = true;
       }
       else {
@@ -359,6 +366,7 @@ window.onload = function () {
         playerSize,
         playerSize
       );
+
     }
     function drawGoal() {
       ctx.beginPath();
@@ -467,6 +475,8 @@ window.onload = function () {
       if (y - playerRadius > waterHeight){
         over = true;
       }
+      // Recenter on player position
+      window.scrollTo(0, y - window.innerHeight / 2);
     }
     function gameFrame() {
       drawPlayer();
