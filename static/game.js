@@ -20,6 +20,9 @@ window.onload = function () {
     canvas.style.top="0px";
     canvas.style.zIndex="100";
 
+    var textFont = "16px Arial",
+        titleFont = "22px Arial";
+
     var ctx=canvas.getContext('2d');
     canvasContainer.appendChild(canvas);
 
@@ -486,38 +489,58 @@ window.onload = function () {
       LedgeDetection();
       movePlayer();
     }
+    function wrapText(text, x, y) {
+        var words = text.split(' ');
+        var line = '';
+
+        for(var n = 0; n < words.length; n++) {
+          var testLine = line + words[n] + ' ';
+          var metrics = ctx.measureText(testLine);
+          var testWidth = metrics.width;
+          if (testWidth > canvas.offsetWidth*0.95 && n > 0) {
+            ctx.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += 25;
+          }
+          else {
+            line = testLine;
+          }
+        }
+        ctx.fillText(line, x, y);
+        return y
+      }
     function creditsFrame() {
         if (creditsY - 80 >= canvas.height){
           reload = true;
           document.location.reload();
         }
         if (success) {
-          ctx.font = "30px Arial";
+          ctx.font = titleFont;
           ctx.fillStyle = "#325f73";
           ctx.textAlign = 'center';
           ctx.fillText("Congratulations", creditsX, creditsY-50);
         }
         else {
-          ctx.font = "22px Arial";
+          ctx.font = titleFont;
           ctx.fillStyle = "#aa0000";
           ctx.textAlign = 'center';
           ctx.fillText("You failed", creditsX, creditsY-50);
         }
-        ctx.font = "22px Arial";
+        ctx.font = titleFont;
         ctx.fillStyle = "#aaaaaa";
         ctx.textAlign = 'center';
         ctx.fillText("Special thanks to", creditsX, creditsY);
         ctx.fillStyle = "#aaaaaa";
         ctx.fillText("何亚雯.", creditsX, creditsY+35);
-        ctx.font = "16px Arial";
+        ctx.font = textFont;
         ctx.fillStyle = "#325f73";
-        ctx.fillText("For her design suggestions, translation & support.", creditsX, creditsY+50);
-        ctx.font = "22px Arial";
+        padding = wrapText("For her design suggestions, translation & support.", creditsX, creditsY+50)
+        ctx.font = titleFont;
         ctx.fillStyle = "#aaaaaa";
-        ctx.fillText("Alexis Rolland", creditsX, creditsY+80);
-        ctx.font = "16px Arial";
+        ctx.fillText("Alexis Rolland", creditsX, 40 + padding);
+        ctx.font = textFont;
         ctx.fillStyle = "#325f73";
-        ctx.fillText("For his big help on UX, features, ideas design & debugging.", creditsX, creditsY+95);
+        wrapText("For his big help on UX, features, ideas design & debugging.", creditsX, padding + 55);
         creditsY += creditsDy;
 
         if (waterHeight < creditsY+120) {
