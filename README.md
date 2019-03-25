@@ -1,5 +1,7 @@
 # Thanks for the feedback
 
+[![Known Vulnerabilities](https://snyk.io/test/github/lerignoux/thanks-for-the-feedback/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/lerignoux/thanks-for-the-feedback?targetFile=requirements.txt)
+
 A tool to help people gather anonymous feedback on themselves for self improvement.
 
 ## tldr
