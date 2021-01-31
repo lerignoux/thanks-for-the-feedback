@@ -1,15 +1,15 @@
-FROM python:3.6.4-alpine
+FROM python:3.9-alpine
 
 MAINTAINER Erignoux Laurent <lerignoux@gmail.com>
 
 RUN apk update && apk add zlib-dev jpeg-dev postgresql-libs && \
-    apk add --virtual .build-deps build-base python3-dev musl-dev postgresql-dev
+    apk add --virtual .build-deps build-base gcc musl-dev python3-dev libffi-dev openssl-dev postgresql-dev
 
 RUN mkdir /app
 WORKDIR /app
 
-ADD ./requirements.txt /app/
-RUN pip install -r requirements.txt
+ADD . /app/
+RUN pip install --upgrade pip -r requirements.txt
 
 RUN apk --purge del .build-deps
 
