@@ -3,7 +3,7 @@ FROM python:3.9-alpine
 MAINTAINER Erignoux Laurent <lerignoux@gmail.com>
 
 RUN apk update && apk add zlib-dev jpeg-dev postgresql-libs && \
-    apk add --virtual .build-deps build-base gcc musl-dev python3-dev libffi-dev openssl-dev postgresql-dev
+    apk add --virtual .build-deps build-base gcc musl-dev python3-dev libffi-dev openssl-dev postgresql-dev rust cargo
 
 RUN mkdir /app
 WORKDIR /app

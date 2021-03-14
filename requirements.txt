@@ -1,6 +1,6 @@
-django>=2.0
-django-allauth>=0.34
-Pillow>=5.0
-qrcode>=5.3
-psycopg2>=2.7
-fpdf>=1.7
+django>=3.1.7
+django-allauth>=0.44
+Pillow>=8.1.2
+qrcode>=6.1
+psycopg2>=2.8.6
+fpdf>=1.7.2
