@@ -13,6 +13,11 @@ docker run --name thanks-for-the-feedback --restart=always -p 1443:8000 -v ~/pro
 Two databases (sqlLite & postgres) are pre-supported by the container but any should be configurable.
 just configure your settings accordingly and link to the database if necessary.
 
+### migration:
+after container start run:
+```
+python manage.py mirate
+```
 
 ## Register social auth:
 see [Providers configuration](http://django-allauth.readthedocs.io/en/latest/providers.html)
